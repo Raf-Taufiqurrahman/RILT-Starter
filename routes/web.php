@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Apps\DashboardController;
+use App\Http\Controllers\Apps\PermissionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +23,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::group(['prefix' => 'apps', 'as' => 'apps.' , 'middleware' => ['auth']], function(){
+    // dashboard route
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
+    // permissions route
+    Route::get('/permissions', PermissionController::class)->name('permission');
 });
 
 require __DIR__.'/auth.php';

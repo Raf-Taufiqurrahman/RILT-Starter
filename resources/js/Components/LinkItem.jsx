@@ -11,7 +11,7 @@ export default function LinkItem({href, icon, link, title, ...props}) {
         <div>
             <Link
                 href={href}
-                className={`${url.startsWith(href) ? ' border-r-2 border-r-gray-50  text-gray-100 bg-gray-900' : '' } flex items-center font-medium gap-x-3.5 px-4 py-3 text-gray-500 hover:border-r-2 hover:border-r-gray-50 hover:text-gray-100 capitalize hover:cursor-pointer text-sm`}
+                className={`${url.startsWith(href) ? 'border-r-2 border-r-gray-500 bg-gray-900 text-white' : '' } flex items-center font-medium gap-x-3.5 px-4 py-3 text-gray-500 hover:border-r-2 hover:border-r-gray-50 hover:text-gray-100 capitalize hover:cursor-pointer text-sm`}
                 {...props}
             >
                 {icon} {title}

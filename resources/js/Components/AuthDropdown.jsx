@@ -29,15 +29,15 @@ export default function AuthDropdown({auth}) {
                 leaveFrom="transform scale-100 opacity-100"
                 leaveTo="transform scale-95 opacity-0"
             >
-                <Menu.Items className='absolute bg-gray-950 rounded-lg w-48 border border-gray-900 mt-2 py-2 right-0 z-50'>
+                <Menu.Items className='absolute bg-gray-950 rounded-lg w-48 border border-gray-900 mt-2 py-2 right-0 z-[100]'>
                     <div className='flex flex-col gap-1.5 divide-y divide-gray-900'>
                         <Menu.Item>
-                            <Link href="/apps/profile" className='px-3 py-1.5 text-sm text-gray-400 flex items-center gap-2 hover:text-sky-500'>
+                            <Link href="/apps/profile" className='px-3 py-1.5 text-sm text-gray-400 flex items-center gap-2 hover:text-gray-200'>
                                 <IconUserCog strokeWidth={'1.5'} size={'20'}/> Profile
                             </Link>
                         </Menu.Item>
                         <Menu.Item>
-                            <button onClick={logout} className='px-3 py-1.5 text-sm text-gray-400 flex items-center gap-2 hover:text-sky-500'>
+                            <button onClick={logout} className='px-3 py-1.5 text-sm text-gray-400 flex items-center gap-2 hover:text-gray-200'>
                                 <IconLogout strokeWidth={'1.5'} size={'20'}/>
                                 Logout
                             </button>

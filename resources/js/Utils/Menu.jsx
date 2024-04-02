@@ -18,7 +18,7 @@ export default function Menu() {
         {
             title: 'User Management',
             details : [
-                {title : 'Akses', href : '/apps/permissions', icon : <IconUserBolt size={20} strokeWidth={1.5}/>},
+                {title : 'Hak Akses', href : '/apps/permissions', active: url.startsWith('/apps/permissions') ? true : false, icon : <IconUserBolt size={20} strokeWidth={1.5}/>},
                 {title : 'Akses Group', href : '/apps/roles', icon : <IconUserShield size={20} strokeWidth={1.5}/>},
                 {title : 'Pengguna', href : '/apps/users', icon : <IconUsers size={20} strokeWidth={1.5}/>}
             ]
