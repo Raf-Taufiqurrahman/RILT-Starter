@@ -1,12 +1,12 @@
 import Widget from '@/Components/Widget';
 import AppLayout from '@/Layouts/AppLayout';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
-import { IconBox, IconTags, IconVersions, IconWallet } from '@tabler/icons-react';
+import { IconBox,IconVersions, IconWallet } from '@tabler/icons-react';
 
 export default function Dashboard({ auth }) {
     return (
-        <AppLayout>
+        <>
+            <Head title='Dashboard'/>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                 <Widget
                     title={'Products'}
@@ -20,11 +20,7 @@ export default function Dashboard({ auth }) {
                     subtitle={'Total Profits Today'}
                     color={'bg-gray-800 text-gray-200'}
                     icon={<IconWallet size={'20'} strokeWidth={'1.5'}/>}
-                    total={
-                        <>
-                            <sup>Rp</sup> 10.000.000
-                        </>
-                    }
+                    total={<><sup>Rp</sup> 10.000.000</>}
                 />
                 <Widget
                     title={'Units'}
@@ -34,6 +30,8 @@ export default function Dashboard({ auth }) {
                     total={4}
                 />
             </div>
-        </AppLayout>
+        </>
     );
 }
+
+Dashboard.layout = page => <AppLayout children={page}/>
