@@ -15,8 +15,6 @@ export default function Search({url, placeholder}) {
         get(`${url}?search=${data.search}`)
     }
 
-    console.log(searchData);
-
     return (
         <form onSubmit={searchData}>
             <div className='relative'>

@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
-import { Menu, Transition  } from '@headlessui/react'
 import { Link } from '@inertiajs/react'
-import { IconChevronDown, IconChevronUp, IconUserCog  } from '@tabler/icons-react'
-import { useForm } from '@inertiajs/react'
+import { IconChevronDown, IconChevronUp } from '@tabler/icons-react'
 export default function LinkItemDropdown({icon, title}) {
     const [isOpen, setIsOpen] = useState(false);
     return (

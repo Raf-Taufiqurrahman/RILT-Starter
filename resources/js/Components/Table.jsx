@@ -1,5 +1,21 @@
 import React from 'react'
 
+const Card = ({icon, title, className, children}) => {
+    return (
+        <>
+            <div className={`p-4 bg-gray-950 border-gray-900 rounded-t-lg border ${className}`}>
+                <div className='flex items-center gap-2 font-semibold text-sm text-gray-400'>
+                    {icon} {title}
+                </div>
+            </div>
+            <div className='bg-gray-950 rounded-b-lg'>
+                {children}
+            </div>
+        </>
+
+    )
+}
+
 const Table = ({ children }) => {
     return (
         <div className="w-full overflow-hidden overflow-x-auto border-collapse rounded-xl">
@@ -62,6 +78,7 @@ const Empty = ({colSpan, message, children}) => {
     )
 }
 
+Table.Card = Card;
 Table.Thead = Thead;
 Table.Tbody = Tbody;
 Table.Td = Td;
