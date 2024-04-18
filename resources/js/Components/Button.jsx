@@ -35,12 +35,12 @@ export default function Button({className, icon, label, type, href, added, url, 
     return (
         <>
             {type === 'link' &&
-                <Link href={href} className={`${className} px-4 py-2 flex items-center gap-2 rounded-lg text-sm font-semibold`}>
+                <Link href={href} className={`${className} px-4 py-2 flex items-center gap-2 rounded-lg text-sm font-semibold text-gray-200`}>
                 {icon} <span className={`${added === true ? 'hidden lg:block' : '' }`}>{label}</span>
                 </Link>
             }
             {type === 'button' &&
-                <button className={`${className} px-4 py-2 flex items-center gap-1 rounded-lg text-sm font-semibold text-gray-400`} {...props}>
+                <button className={`${className} px-4 py-2 flex items-center gap-1 rounded-lg text-sm font-semibold text-gray-200`} {...props}>
                     {icon} <span className={`${added === true ? 'hidden md:block' : '' }`}>{label}</span>
                 </button>
             }
@@ -54,10 +54,15 @@ export default function Button({className, icon, label, type, href, added, url, 
                     {icon}
                 </button>
             }
-            {type === 'edit' &&
+            {type === 'modal' &&
                 <button className={`${className} px-3 py-2 flex items-center gap-1 rounded-lg text-sm font-semibold`} {...props}>
                     {icon}
                 </button>
+            }
+            {type === 'edit' &&
+                <Link href={href} className={`${className} px-3 py-2 flex items-center gap-1 rounded-lg text-sm font-semibold`} {...props}>
+                    {icon}
+                </Link>
             }
         </>
     )

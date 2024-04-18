@@ -9,7 +9,7 @@ import Table from '@/Components/Table'
 import AppLayout from '@/Layouts/AppLayout'
 import { Head, useForm, usePage } from '@inertiajs/react'
 import { IconDatabaseOff, IconCirclePlus, IconTrash, IconUserShield, IconPencilCog, IconPencilCheck } from '@tabler/icons-react';
-import React, {useState} from 'react'
+import React from 'react'
 export default function Index() {
 
     // destruct roles from props
@@ -77,13 +77,12 @@ export default function Index() {
                         type={'button'}
                         icon={<IconCirclePlus size={20} strokeWidth={1.5}/>}
                         className={'bg-gray-950 border-gray-800 text-gray-200 border'}
-                        added={true}
-                        label={'Tambah Data Akses Group Baru'}
+                        label={'Tambah Data Akses Group'}
                         onClick={() => setData('isOpen', true)}
                     />
                     <div className='w-full md:w-4/12'>
                         <Search
-                            url={'/apps/permissions'}
+                            url={route('apps.roles.index')}
                             placeholder='Cari data berdasarkan nama akses group...'
                         />
                     </div>
@@ -132,76 +131,72 @@ export default function Index() {
                     />
                 </form>
             </Modal>
-            <Table.Card title={'Data Akses Group'} icon={<IconUserShield size={20} strokeWidth={1.5}/>}
-                search={<select className='w-fit bg-gray-950 border border-gray-900 rounded-lg text-xs' value={data.page} onChange={e => { setData('limit', e.target.value); listData(e); }}>
-                    <option value={2}>10 Data</option>
-                    <option value={3}>20 Data</option>
-                </select>}>
-            <Table>
-                <Table.Thead>
-                    <tr>
-                        <Table.Th className='w-10'>No</Table.Th>
-                        <Table.Th>Nama Akses Group</Table.Th>
-                        <Table.Th>Hak Akses</Table.Th>
-                        <Table.Th className='w-40'></Table.Th>
-                    </tr>
-                </Table.Thead>
-                <Table.Tbody>
-                    {roles.data.length ?
-                        roles.data.map((role, i) => (
-                            <tr className='hover:bg-gray-900' key={i}>
-                                <Table.Td className='text-center'>
-                                    {++i + (roles.current_page-1) * roles.per_page}
-                                </Table.Td>
-                                <Table.Td>
-                                    {role.name}
-                                </Table.Td>
-                                <Table.Td>
-                                    <div className='flex flex-wrap gap-2'>
-                                        {role.permissions.map((permission, index) => (
-                                            <span className="rounded-full px-2.5 py-0.5 text-xs tracking-tight font-medium transition-colors focus:outline-none flex items-center gap-1 capitalize border border-teal-500/40 bg-teal-500/10 text-teal-500 hover:bg-teal-500/20" key={index}>
-                                                {permission.name}
-                                            </span>
-                                        ))}
+            <Table.Card title={'Data Akses Group'} icon={<IconUserShield size={20} strokeWidth={1.5}/>}>
+                <Table>
+                    <Table.Thead>
+                        <tr>
+                            <Table.Th className='w-10'>No</Table.Th>
+                            <Table.Th>Nama Akses Group</Table.Th>
+                            <Table.Th>Hak Akses</Table.Th>
+                            <Table.Th className='w-40'></Table.Th>
+                        </tr>
+                    </Table.Thead>
+                    <Table.Tbody>
+                        {roles.data.length ?
+                            roles.data.map((role, i) => (
+                                <tr className='hover:bg-gray-900' key={i}>
+                                    <Table.Td className='text-center'>
+                                        {++i + (roles.current_page-1) * roles.per_page}
+                                    </Table.Td>
+                                    <Table.Td>
+                                        {role.name}
+                                    </Table.Td>
+                                    <Table.Td>
+                                        <div className='flex flex-wrap gap-2'>
+                                            {role.permissions.map((permission, index) => (
+                                                <span className="rounded-full px-2.5 py-0.5 text-xs tracking-tight font-medium transition-colors focus:outline-none flex items-center gap-1 capitalize border border-teal-500/40 bg-teal-500/10 text-teal-500 hover:bg-teal-500/20" key={index}>
+                                                    {permission.name}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </Table.Td>
+                                    <Table.Td>
+                                        <div className='flex gap-2'>
+                                            <Button
+                                                type={'modal'}
+                                                icon={<IconPencilCog size={16} strokeWidth={1.5}/>}
+                                                className={'bg-orange-950 border-orange-800 text-gray-300 border hover:bg-orange-900'}
+                                                onClick={() =>
+                                                    setData({
+                                                        id: role.id,
+                                                        selectedPermission: role.permissions,
+                                                        name: role.name,
+                                                        isUpdate: true,
+                                                        isOpen : !data.isOpen,
+                                                    })
+                                                }
+                                            />
+                                            <Button
+                                                type={'delete'}
+                                                icon={<IconTrash size={16} strokeWidth={1.5}/>}
+                                                className={'bg-rose-950 border-rose-800 text-gray-300 border hover:bg-rose-900'}
+                                                url={route('apps.roles.destroy', role.id)}
+                                            />
+                                        </div>
+                                    </Table.Td>
+                                </tr>
+                            )) :
+                            <Table.Empty colSpan={4} message={
+                                <>
+                                    <div className='flex justify-center items-center text-center mb-2'>
+                                        <IconDatabaseOff size={20} strokeWidth={1.5}/>
                                     </div>
-                                </Table.Td>
-                                <Table.Td>
-                                    <div className='flex gap-2'>
-                                    <Button
-                                        type={'edit'}
-                                        icon={<IconPencilCog size={16} strokeWidth={1.5}/>}
-                                        className={'bg-orange-950 border-orange-800 text-gray-300 border hover:bg-orange-900'}
-                                        onClick={() =>
-                                            setData({
-                                                id: role.id,
-                                                selectedPermission: role.permissions,
-                                                name: role.name,
-                                                isUpdate: true,
-                                                isOpen : !data.isOpen,
-                                            })
-                                        }
-                                    />
-                                    <Button
-                                        type={'delete'}
-                                        icon={<IconTrash size={16} strokeWidth={1.5}/>}
-                                        className={'bg-rose-950 border-rose-800 text-gray-300 border hover:bg-rose-900'}
-                                        url={route('apps.roles.destroy', role.id)}
-                                    />
-                                    </div>
-                                </Table.Td>
-                            </tr>
-                        )) :
-                        <Table.Empty colSpan={3} message={
-                            <>
-                                <div className='flex justify-center items-center text-center mb-2'>
-                                    <IconDatabaseOff size={20} strokeWidth={1.5}/>
-                                </div>
-                                <span className='text-gray-500'>Data akses group</span> <span className='text-rose-500 underline underline-offset-2'>tidak ditemukan.</span>
-                            </>
-                        }/>
-                    }
-                </Table.Tbody>
-            </Table>
+                                    <span className='text-gray-500'>Data akses group</span> <span className='text-rose-500 underline underline-offset-2'>tidak ditemukan.</span>
+                                </>
+                            }/>
+                        }
+                    </Table.Tbody>
+                </Table>
             </Table.Card>
             {roles.last_page !== 1 && (<Pagination links={roles.links}/>)}
         </>

@@ -9,7 +9,7 @@ export default function Widget({title, icon, subtitle, className, total, color})
                         {icon}
                     </div>
                     <div className='flex flex-col'>
-                        <div className='font-semibold'>{title}</div>
+                        <div className='font-semibold text-gray-200'>{title}</div>
                         <div className='text-xs text-gray-500'>{subtitle}</div>
                     </div>
                 </div>

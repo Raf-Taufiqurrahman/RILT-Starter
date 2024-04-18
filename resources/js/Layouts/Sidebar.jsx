@@ -1,9 +1,9 @@
 import LinkItem from "@/Components/LinkItem";
-import LinkItemDropdown from "@/Components/LinkItemDropdown";
-import { Link, usePage } from "@inertiajs/react";
+import { usePage } from "@inertiajs/react";
 import { IconBrandReact } from "@tabler/icons-react";
 import Menu from "@/Utils/Menu";
 import React from "react";
+import LinkItemDropdown from "@/Components/LinkItemDropdown";
 
 export default function Sidebar({ sidebarOpen }) {
     // define props
@@ -39,10 +39,15 @@ export default function Sidebar({ sidebarOpen }) {
                     <div className="w-full flex flex-col overflow-y-auto">
                         {menuNavigation.map((item, index) => (
                             <div key={index}>
-                                <div className="text-gray-500 text-xs py-3 px-4 font-bold">
+                                <div className="text-gray-500 text-xs py-3 px-4 font-bold uppercase">
                                     {item.title}
                                 </div>
-                                {item.details.map((detail, indexDetail) => <LinkItem title={detail.title} icon={detail.icon} href={detail.href} key={indexDetail}/>)}
+                                {item.details.map((detail, indexDetail) => (
+                                    detail.hasOwnProperty('subdetails') ?
+                                    <LinkItemDropdown title={detail.title} icon={detail.icon} key={indexDetail} data={detail.subdetails}/>
+                                    :
+                                    <LinkItem title={detail.title} icon={detail.icon} href={detail.href} key={indexDetail}/>
+                                ))}
                             </div>
                         ))}
                     </div>

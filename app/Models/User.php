@@ -54,7 +54,7 @@ class User extends Authenticatable
     protected function avatar(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $value != null ? asset('/storage/avatars/' . $value) : 'https://www.gravatar.com/avatar/b2b58f77632a6f5c46d30b08108baa57?d=mm&s=150',
+            get: fn ($value) => $value != null ? asset('/storage/avatars/' . $value) : asset('avatar.png'),
         );
     }
 
