@@ -79,6 +79,7 @@ export default function Index() {
                         className={'bg-gray-950 border-gray-800 text-gray-200 border'}
                         label={'Tambah Data Akses Group'}
                         onClick={() => setData('isOpen', true)}
+                        added={true}
                     />
                     <div className='w-full md:w-4/12'>
                         <Search

@@ -1,7 +1,7 @@
 import LinkItem from "@/Components/LinkItem";
 import { usePage } from "@inertiajs/react";
 import { IconBrandReact } from "@tabler/icons-react";
-import Menu from "@/Utils/Menu";
+import Menu from "@/Utils/Menu"
 import React from "react";
 import LinkItemDropdown from "@/Components/LinkItemDropdown";
 
@@ -44,9 +44,9 @@ export default function Sidebar({ sidebarOpen }) {
                                 </div>
                                 {item.details.map((detail, indexDetail) => (
                                     detail.hasOwnProperty('subdetails') ?
-                                    <LinkItemDropdown title={detail.title} icon={detail.icon} key={indexDetail} data={detail.subdetails}/>
+                                    <LinkItemDropdown title={detail.title} icon={detail.icon} key={indexDetail} data={detail.subdetails} sidebarOpen={sidebarOpen}/>
                                     :
-                                    <LinkItem title={detail.title} icon={detail.icon} href={detail.href} key={indexDetail}/>
+                                    <LinkItem title={detail.title} icon={detail.icon} href={detail.href} key={indexDetail} sidebarOpen={sidebarOpen}/>
                                 ))}
                             </div>
                         ))}
@@ -56,6 +56,21 @@ export default function Sidebar({ sidebarOpen }) {
                 <>
                     <div className="flex justify-center items-center px-6 py-2 h-16 border-b border-gray-900">
                         <IconBrandReact size={20} strokeWidth={1.5} className="text-gray-400"/>
+                    </div>
+                    <div className='w-full px-6 py-3 flex justify-center items-center gap-4 border-b bg-gray-950/50 border-gray-900'>
+                        <img src={auth.user.avatar} className='w-8 h-8 rounded-full border border-gray-800'/>
+                    </div>
+                    <div className='w-full flex flex-col overflow-y-auto items-center justify-center'>
+                        {menuNavigation.map((link, i) => (
+                            <div className='flex flex-col min-w-full items-center relative' key={i}>
+                                {link.details.map((detail, x) =>
+                                    detail.hasOwnProperty('subdetails') ?
+                                    <LinkItemDropdown sidebarOpen={sidebarOpen} icon={detail.icon} href={detail.href} data={detail.subdetails} key={x}/>
+                                    :
+                                    <LinkItem sidebarOpen={sidebarOpen} icon={detail.icon} href={detail.href} key={x}/>
+                                )}
+                            </div>
+                        ))}
                     </div>
                 </>
             }

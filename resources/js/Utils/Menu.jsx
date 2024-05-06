@@ -1,5 +1,5 @@
 import { usePage } from '@inertiajs/react';
-import { IconLayout2, IconUserBolt, IconUserShield, IconUsers } from '@tabler/icons-react';
+import { IconCirclePlus, IconLayout2, IconPlus, IconTable, IconUserBolt, IconUserPlus, IconUserShield, IconUsers } from '@tabler/icons-react';
 import React from 'react'
 
 export default function Menu() {
@@ -42,11 +42,13 @@ export default function Menu() {
                         {
                             title: 'Data Pengguna',
                             href: '/apps/users',
+                            icon: <IconTable size={20} strokeWidth={1.5}/>,
                             active: url === '/apps/users' ? true : false,
                         },
                         {
                             title: 'Tambah Data Pengguna',
                             href: '/apps/users/create',
+                            icon: <IconCirclePlus size={20} strokeWidth={1.5}/>,
                             active: url === '/apps/users/create' ? true : false,
                         },
                     ]

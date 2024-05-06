@@ -103,7 +103,7 @@ export default function Dashboard({ auth }) {
                 />
             </div>
             <div className='grid grid-cols-4 mt-5 gap-4 items-start'>
-                <div className='col-span-2'>
+                <div className='col-span-4 md:col-span-2'>
                     <Table.Card
                         title={'Data Produk Dengan Stok Dibawah Limit'}
                         icon={<IconPackage size={20} strokeWidth={1.5}/>}
@@ -137,7 +137,7 @@ export default function Dashboard({ auth }) {
                         </Table>
                     </Table.Card>
                 </div>
-                <div className='col-span-2'>
+                <div className='col-span-4 md:col-span-2'>
                     <div className={`p-4 bg-gray-950 border-gray-900 rounded-t-lg border`}>
                         <div className='flex items-center gap-2 font-semibold text-sm text-gray-200'>
                             <IconChartBar size={20} strokeWidth={1.5}/>
@@ -145,7 +145,7 @@ export default function Dashboard({ auth }) {
                         </div>
                     </div>
                     <div className='bg-gray-950 p-4'>
-                        <Bar data={data} />
+                        <Bar className='min-w-full' data={data} />
                     </div>
                 </div>
             </div>

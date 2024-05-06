@@ -50,7 +50,7 @@ export default function Create() {
                 }
                 form={saveUser}
             >
-                <div className='mb-4 flex justify-between gap-4'>
+                <div className='mb-4 flex flex-col md:flex-row justify-between gap-4'>
                     <div className='w-full md:w-1/2'>
                         <Input
                             type={'text'}
@@ -68,8 +68,8 @@ export default function Create() {
                         />
                     </div>
                 </div>
-                <div className='mb-4 flex gap-4'>
-                    <div className='w-1/2'>
+                <div className='mb-4 flex flex-col md:flex-row gap-4'>
+                    <div className='w-full md:w-1/2'>
                         <Input
                             type={'password'}
                             label={'Kata Sandi'}
@@ -77,7 +77,7 @@ export default function Create() {
                             onChange={e => setData('password', e.target.value)}
                         />
                     </div>
-                    <div className='w-1/2'>
+                    <div className='w-full md:w-1/2'>
                         <Input
                             type={'password'}
                             label={'Konfirmasi Kata Sandi'}
@@ -92,7 +92,7 @@ export default function Create() {
                     </div>
                 </div>
                 <div className='bg-gray-900 p-4 rounded-b-lg'>
-                    <div className='flex flex-row gap-4'>
+                    <div className='flex flex-row flex-wrap gap-4'>
                         {roles.map((role, i) => (
                             <Checkbox label={role.name} value={role.name} onChange={setSelectedRoles} key={i}/>
                         ))}
