@@ -2,7 +2,7 @@ import AppLayout from '@/Layouts/AppLayout'
 import React, { useEffect, useState } from 'react'
 import { Head, useForm, usePage } from '@inertiajs/react'
 import Button from '@/Components/Button'
-import { IconDatabaseOff, IconCirclePlus, IconTrash, IconUsers, IconPencilCog } from '@tabler/icons-react';
+import { IconDatabaseOff, IconCirclePlus, IconTrash, IconPencilCog } from '@tabler/icons-react';
 import Search from '@/Components/Search';
 import Table from '@/Components/Table';
 import Checkbox from '@/Components/Checkbox';
@@ -76,7 +76,7 @@ export default function Index() {
                             <Button
                                 type={'bulk'}
                                 icon={<IconTrash size={20} strokeWidth={1.5}/>}
-                                className={'bg-rose-950 border border-gray-800 hover:bg-rose-900'}
+                                className={'border bg-rose-100 border-rose-300 text-rose-500 hover:bg-rose-200 dark:bg-rose-950  dark:border-gray-800 dark:hover:bg-rose-900'}
                                 label={`Hapus ${data.selectedUser.length} data yang dipilih`}
                                 added={true}
                                 onClick={() => deleteData(data.selectedUser)}
@@ -160,12 +160,12 @@ export default function Index() {
                                 </tr>
                             ))
                             :
-                            <Table.Empty colSpan={5} message={
+                            <Table.Empty colSpan={6} message={
                                 <>
                                     <div className='flex justify-center items-center text-center mb-2'>
-                                        <IconDatabaseOff size={20} strokeWidth={1.5}/>
+                                        <IconDatabaseOff size={24} strokeWidth={1.5} className='text-gray-500 dark:text-white'/>
                                     </div>
-                                    <span className='text-gray-500'>Data pengguna</span><span className='text-rose-500 underline underline-offset-2'>tidak ditemukan.</span>
+                                    <span className='text-gray-500'>Data pengguna</span> <span className='text-rose-500 underline underline-offset-2'>tidak ditemukan.</span>
                                 </>
                             }/>
                         }

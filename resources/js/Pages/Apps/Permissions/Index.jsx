@@ -42,7 +42,7 @@ export default function Index() {
                             <Table.Empty colSpan={2} message={
                                 <>
                                     <div className='flex justify-center items-center text-center mb-2'>
-                                        <IconDatabaseOff size={20} strokeWidth={1.5}/>
+                                        <IconDatabaseOff size={24} strokeWidth={1.5} className='text-gray-500 dark:text-white'/>
                                     </div>
                                     <span className='text-gray-500'>Data hak akses</span> <span className='text-rose-500 underline underline-offset-2'>tidak ditemukan.</span>
                                 </>
