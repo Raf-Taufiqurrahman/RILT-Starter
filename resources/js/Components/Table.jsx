@@ -8,7 +8,7 @@ const Card = ({icon, title, className, children}) => {
                     {title}
                 </div>
             </div>
-            <div className='bg-white dark:bg-gray-950 rounded-b-lg'>
+            <div className='bg-white dark:bg-gray-950 rounded-b-lg border border-t-0 dark:border-gray-900'>
                 {children}
             </div>
         </>
