@@ -1,5 +1,4 @@
 import Button from '@/Components/Button';
-import Header from '@/Components/Header';
 import Input from '@/Components/Input';
 import ListBox from '@/Components/ListBox';
 import Modal from '@/Components/Modal';
@@ -76,7 +75,7 @@ export default function Index() {
                     <Button
                         type={'button'}
                         icon={<IconCirclePlus size={20} strokeWidth={1.5}/>}
-                        className={'bg-gray-950 border-gray-800 text-gray-200 border'}
+                        className={'border bg-white text-gray-700 dark:bg-gray-950 dark:border-gray-800 dark:text-gray-200'}
                         label={'Tambah Data Akses Group'}
                         onClick={() => setData('isOpen', true)}
                         added={true}
@@ -126,13 +125,13 @@ export default function Index() {
                     <Button
                         type={'submit'}
                         icon={<IconPencilCheck size={20} strokeWidth={1.5}/>}
-                        className={'bg-gray-950 border-gray-800 text-gray-200 border'}
+                        className={'border bg-white text-gray-700 hover:bg-gray-100 dark:bg-gray-950 dark:border-gray-800 dark:text-gray-200'}
                         added={true}
                         label={'Simpan'}
                     />
                 </form>
             </Modal>
-            <Table.Card title={'Data Akses Group'} icon={<IconUserShield size={20} strokeWidth={1.5}/>}>
+            <Table.Card title={'Data Akses Group'}>
                 <Table>
                     <Table.Thead>
                         <tr>
@@ -145,7 +144,7 @@ export default function Index() {
                     <Table.Tbody>
                         {roles.data.length ?
                             roles.data.map((role, i) => (
-                                <tr className='hover:bg-gray-900' key={i}>
+                                <tr className='hover:bg-gray-100 dark:hover:bg-gray-900' key={i}>
                                     <Table.Td className='text-center'>
                                         {++i + (roles.current_page-1) * roles.per_page}
                                     </Table.Td>
@@ -166,7 +165,7 @@ export default function Index() {
                                             <Button
                                                 type={'modal'}
                                                 icon={<IconPencilCog size={16} strokeWidth={1.5}/>}
-                                                className={'bg-orange-950 border-orange-800 text-gray-300 border hover:bg-orange-900'}
+                                                className={'border bg-orange-100 border-orange-300 text-orange-500 hover:bg-orange-200 dark:bg-orange-950 dark:border-orange-800 dark:text-gray-300  dark:hover:bg-orange-900'}
                                                 onClick={() =>
                                                     setData({
                                                         id: role.id,
@@ -180,7 +179,7 @@ export default function Index() {
                                             <Button
                                                 type={'delete'}
                                                 icon={<IconTrash size={16} strokeWidth={1.5}/>}
-                                                className={'bg-rose-950 border-rose-800 text-gray-300 border hover:bg-rose-900'}
+                                                className={'border bg-rose-100 border-rose-300 text-rose-500 hover:bg-rose-200 dark:bg-rose-950 dark:border-rose-800 dark:text-gray-300  dark:hover:bg-rose-900'}
                                                 url={route('apps.roles.destroy', role.id)}
                                             />
                                         </div>

@@ -36,7 +36,7 @@ export default function Button({className, icon, label, type, href, added, url, 
         <>
             {type === 'link' &&
                 <Link href={href} className={`${className} px-4 py-2 flex items-center gap-2 rounded-lg text-sm font-semibold text-gray-200`}>
-                {icon} <span className={`${added === true ? 'hidden lg:block' : '' }`}>{label}</span>
+                    {icon} <span className={`${added === true ? 'hidden lg:block' : '' }`}>{label}</span>
                 </Link>
             }
             {type === 'button' &&
@@ -63,6 +63,11 @@ export default function Button({className, icon, label, type, href, added, url, 
                 <Link href={href} className={`${className} px-3 py-2 flex items-center gap-1 rounded-lg text-sm font-semibold`} {...props}>
                     {icon}
                 </Link>
+            }
+            {type === 'bulk' &&
+                <button {...props} className={`${className} px-4 py-2 flex items-center gap-2 rounded-lg text-sm font-semibold text-gray-200`}>
+                    {icon} <span className={`${added === true ? 'hidden lg:block' : '' }`}>{label}</span>
+                </button>
             }
         </>
     )

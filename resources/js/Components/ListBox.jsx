@@ -13,16 +13,16 @@ export default function ListBox({selected, data, setSelected, label, errors}) {
         <div className='flex flex-col gap-2'>
             <label className='text-gray-600 text-sm'>{label}</label>
             <Listbox value={selected} onChange={setSelected} multiple by="id">
-                <Listbox.Button className={'w-full px-3 py-1.5 border bg-gray-900 text-sm rounded-md focus:outline-none focus:ring-0 text-gray-500 focus:border-gray-700 border-gray-800 flex justify-between items-center gap-8'}>
+                <Listbox.Button className={'w-full px-3 py-1.5 border text-sm rounded-md focus:outline-none focus:ring-0 flex justify-between items-center gap-8 bg-white text-gray-700 focus:border-gray-200 border-gray-200 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-gray-700 dark:border-gray-800'}>
                     {preview}
                     <IconChevronDown size={20} strokeWidth={1.5}/>
                 </Listbox.Button>
-                <Listbox.Options className={'bg-gray-950 p-4 border border-gray-900 rounded-lg flex flex-wrap gap-2'}>
+                <Listbox.Options className={' p-4 border rounded-lg flex flex-wrap gap-2 bg-gray-100 dark:border-gray-900 dark:bg-gray-950'}>
                     {data.map((item) => (
                         <Listbox.Option key={item.id} value={item}>
                             {({ selected }) => (
                                 <div
-                                    className='text-gray-400 cursor-pointer hover:bg-gray-800 px-3 py-1.5 rounded-lg flex items-center gap-2 bg-gray-900 border-gray-800 text-sm'>
+                                    className='text-sm cursor-pointer px-3 py-1.5 rounded-lg flex items-center gap-2 bg-white text-gray-700 hover:bg-gray-200 border dark:bg-gray-900 dark:border-gray-800 dark:text-gray-400 dark:hover:bg-gray-800 '>
                                     {selected ? <IconCircleFilled size={15} strokeWidth={1.5} className='text-teal-500' /> : <IconCircle size={15} strokeWidth={1.5}/>}
                                     {item.name}
                                 </div>

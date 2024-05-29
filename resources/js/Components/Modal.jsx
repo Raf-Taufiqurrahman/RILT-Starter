@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 
-export default function Modal({ children, title, icon, show = false, maxWidth = '2xl', closeable = true, onClose = () => {} }) {
+export default function Modal({ children, title, show = false, maxWidth = '2xl', closeable = true, onClose = () => {} }) {
     const close = () => {
         if (closeable) {
             onClose();
@@ -46,10 +46,10 @@ export default function Modal({ children, title, icon, show = false, maxWidth = 
                     leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
                     <Dialog.Panel
-                        className={`mb-6 bg-gray-950 rounded-lg overflow-hidden shadow-xl transform transition-all w-full sm:mx-auto ${maxWidthClass}`}
+                        className={`mb-6 bg-white dark:bg-gray-950 rounded-lg overflow-hidden shadow-xl transform transition-all w-full sm:mx-auto ${maxWidthClass}`}
                     >
-                        <Dialog.Title className={'border-b border-gray-900 px-4 py-2 text-gray-300 font-semibold text-base flex items-center gap-2'}>
-                            {icon} {title}
+                        <Dialog.Title className={'border-b px-4 py-2 font-semibold text-base flex items-center gap-2 text-gray-700 dark:border-gray-900 dark:text-gray-300'}>
+                            {title}
                         </Dialog.Title>
                         <div className='p-4'>
                             {children}

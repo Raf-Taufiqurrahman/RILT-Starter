@@ -19,7 +19,7 @@ export default function Index() {
                     placeholder='Cari data berdasarkan nama hak akses...'
                 />
             </div>
-            <Table.Card title={'Data Hak Akses'} icon={<IconUserBolt size={20} strokeWidth={1.5}/>}>
+            <Table.Card title={'Data Hak Akses'}>
                 <Table>
                     <Table.Thead>
                         <tr>
@@ -30,7 +30,7 @@ export default function Index() {
                     <Table.Tbody>
                         {permissions.data.length ?
                             permissions.data.map((permission, i) => (
-                                <tr className='hover:bg-gray-900' key={i}>
+                                <tr className='hover:bg-gray-100 dark:hover:bg-gray-900' key={i}>
                                     <Table.Td className='text-center'>
                                         {++i + (permissions.current_page-1) * permissions.per_page}
                                     </Table.Td>

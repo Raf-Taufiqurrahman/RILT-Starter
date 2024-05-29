@@ -13,6 +13,9 @@ class PermissionTableSeeder extends Seeder
      */
     public function run(): void
     {
+        // dashboard permissions
+        Permission::create(['name' => 'dashboard-access']);
+
          // users permissions
          Permission::create(['name' => 'users-access']);
          Permission::create(['name' => 'users-create']);

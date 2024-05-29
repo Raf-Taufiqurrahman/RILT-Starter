@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { usePage } from '@inertiajs/react';
-import { IconAlignLeft, IconBell, IconMoon } from '@tabler/icons-react'
+import { IconAlignLeft, IconMoon, IconSun } from '@tabler/icons-react'
 import AuthDropdown from '@/Components/AuthDropdown';
 import Menu from '@/Utils/Menu';
 import Notification from '@/Components/Notification';
 
-export default function Navbar({ toggleSidebar }) {
+export default function Navbar({ toggleSidebar, themeSwitcher, darkMode }) {
     // destruct auth from props
     const { auth } = usePage().props;
-
-    // destruct url from usePage
-    const { url } = usePage();
 
     // get menu from utils
     const menuNavigation = Menu();
@@ -43,25 +40,25 @@ export default function Navbar({ toggleSidebar }) {
     })
 
     return (
-        <div className='py-8 px-4 md:px-6 flex justify-between items-center min-w-full bg-gray-950 sticky top-0 z-20 h-16 border-b border-gray-900'>
+        <div className='py-8 px-4 md:px-6 flex justify-between items-center min-w-full sticky top-0 z-20 h-16 border-b bg-white dark:border-gray-900 dark:bg-gray-950'>
             <div className='flex items-center gap-4'>
-                <button className='text-gray-400 hidden md:block' onClick={toggleSidebar}>
+                <button className='text-gray-700 dark:text-gray-400 hidden md:block' onClick={toggleSidebar}>
                     <IconAlignLeft size={18} strokeWidth={1.5}/>
                 </button>
-                <div className='flex flex-row items-center gap-1 md:border-l-2 md:border-double md:px-4 border-gray-900'>
+                <div className='flex flex-row items-center gap-1 md:border-l-2 md:border-double md:px-4 dark:border-gray-900'>
                     {links.map((link, i) => (
                         link.hasOwnProperty('subdetails') ?
-                        sublinks.map((sublink, x) => sublink.active === true && <span className='font-semibold text-gray-400 text-sm md:text-base' key={x}>{sublink.title}</span>)
+                        sublinks.map((sublink, x) => sublink.active === true && <span className='font-semibold text-sm md:text-base text-gray-700 dark:text-gray-400' key={x}>{sublink.title}</span>)
                         :
-                        link.active === true && <span className='font-semibold text-gray-400 text-sm md:text-base' key={i}>{link.title}</span>
+                        link.active === true && <span className='font-semibold text-sm md:text-base text-gray-700 dark:text-gray-400 ' key={i}>{link.title}</span>
                     ))}
                 </div>
             </div>
             <div className='flex items-center gap-4'>
-                <div className='flex flex-row items-center gap-1 border-r-2 border-double px-4 border-gray-900'>
+                <div className='flex flex-row items-center gap-1 border-r-2 border-double px-4 dark:border-gray-900'>
                     <div className='flex flex-row gap-2'>
-                        <button className='text-gray-400 hover:bg-gray-900 p-2 rounded-md'>
-                            <IconMoon strokeWidth={1.5} size={18}/>
+                        <button className='p-2 rounded-md text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-900 ' onClick={themeSwitcher}>
+                           {darkMode ? <IconSun strokeWidth={1.5} size={18}/> : <IconMoon strokeWidth={1.5} size={18}/> }
                         </button>
                         <Notification/>
                     </div>

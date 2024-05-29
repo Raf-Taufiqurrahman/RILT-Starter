@@ -58,4 +58,23 @@ class User extends Authenticatable
         );
     }
 
+    /**
+     *  get all permissions users
+     */
+    public function getPermissions()
+    {
+        return $this->getAllPermissions()->mapWithKeys(function($permission){
+            return [
+                $permission['name'] => true
+            ];
+        });
+    }
+
+    /**
+     * check role isSuperAdmin
+     */
+    public function isSuperAdmin()
+    {
+        return $this->hasRole('super-admin');
+    }
 }

@@ -27,14 +27,14 @@ class UserRequest extends FormRequest
             return [
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:users',
-                'password' => 'required|min:4|confirmation',
+                'password' => 'required|min:4|confirmed',
                 'selectedRoles' => 'required|array|min:1',
             ];
         elseif($method === 'PUT')
             return [
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:users,email,'. $this->user->id,
-                'password' => 'required|min:4',
+                'password' => 'nullable|min:4|confirmed',
                 'selectedRoles' => 'required|array|min:1',
             ];
     }
@@ -46,9 +46,12 @@ class UserRequest extends FormRequest
             'email.required' => 'kolom email pengguna tidak boleh kosong.',
             'email.unique' => 'email pengguna sudah ada, silahkan gunakan nama lainnya.',
             'password.required' => 'kolom kata sandi tidak boleh kosong',
+            'password.min' => 'kolom kata sandi minimal 4 huruf',
+            'password.confirmed' => 'kolom konfirmasi kata sandi tidak sesuai',
 
-            'selectedPermission.required' => 'kolom hak akses tidak boleh kosong.',
-            'selectedPermission.min' => 'kolom hak akses minimal harus 1 data',
+            'selectedRoles.required' => 'kolom akses group tidak boleh kosong.',
+            'selectedRoles.min' => 'kolom akses group minimal harus 1 data',
+
         ];
     }
 }

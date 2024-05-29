@@ -83,21 +83,21 @@ export default function Dashboard({ auth }) {
                 <Widget
                     title={'Produk'}
                     subtitle={'Total Produk'}
-                    color={'bg-gray-800 text-gray-200'}
+                    color={'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-200'}
                     icon={<IconBox size={'20'} strokeWidth={'1.5'}/>}
                     total={40}
                 />
                 <Widget
                     title={'Pendapatan'}
                     subtitle={'Total Pendapatan Hari Ini'}
-                    color={'bg-gray-800 text-gray-200'}
+                    color={'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-200'}
                     icon={<IconWallet size={'20'} strokeWidth={'1.5'}/>}
-                    total={<><sup>Rp</sup> 10.000.000</>}
+                    total={<><sup>Rp</sup> 1.000K</>}
                 />
                 <Widget
                     title={'Pelanggan'}
                     subtitle={'Total Pelanggan'}
-                    color={'bg-gray-800 text-gray-200'}
+                    color={'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-200'}
                     icon={<IconUsers size={'20'} strokeWidth={'1.5'}/>}
                     total={4}
                 />
@@ -118,7 +118,7 @@ export default function Dashboard({ auth }) {
                             </Table.Thead>
                             <Table.Tbody>
                                 {products.map((product, i) => (
-                                    <tr className='hover:bg-gray-900' key={i}>
+                                    <tr className='hover:bg-gray-100 dark:hover:bg-gray-900' key={i}>
                                         <Table.Td className='text-center'>
                                             {++i}
                                         </Table.Td>
@@ -138,13 +138,12 @@ export default function Dashboard({ auth }) {
                     </Table.Card>
                 </div>
                 <div className='col-span-4 md:col-span-2'>
-                    <div className={`p-4 bg-gray-950 border-gray-900 rounded-t-lg border`}>
-                        <div className='flex items-center gap-2 font-semibold text-sm text-gray-200'>
-                            <IconChartBar size={20} strokeWidth={1.5}/>
+                    <div className={`p-4 rounded-t-lg border bg-white dark:bg-gray-950 dark:border-gray-900`}>
+                        <div className='flex items-center gap-2 font-semibold text-sm text-gray-700 dark:text-gray-200'>
                             Grafik Penjualan Produk
                         </div>
                     </div>
-                    <div className='bg-gray-950 p-4'>
+                    <div className='p-4 rounded-b-lg border border-t-0 bg-white dark:bg-gray-950 dark:border-gray-900'>
                         <Bar className='min-w-full' data={data} />
                     </div>
                 </div>

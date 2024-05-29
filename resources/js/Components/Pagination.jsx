@@ -3,7 +3,7 @@ import { Link } from '@inertiajs/react';
 import { IconChevronRight, IconChevronLeft } from '@tabler/icons-react';
 export default function Pagination({links}) {
 
-    const style = 'bg-gray-950 p-1 text-sm border border-gray-900 rounded-md text-gray-400 hover:bg-gray-900'
+    const style = 'p-1 text-sm border rounded-md bg-white text-gray-500 hover:bg-gray-100 dark:bg-gray-950 dark:text-gray-400 dark:hover:bg-gray-900 dark:border-gray-900'
 
     return (
         <>
@@ -19,7 +19,7 @@ export default function Pagination({links}) {
                                 <IconChevronRight size={'20'} strokeWidth={'1.5'}/>
                             </Link>
                         ) : (
-                            <Link className={`px-2 py-1 text-sm border border-gray-900 rounded-md text-gray-400 hover:bg-gray-900 ${item.active ? 'bg-gray-900 text-gray-50' : 'bg-gray-950'}`} key={i} href={item.url}>
+                            <Link className={`px-2 py-1 text-sm border  rounded-md text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-900 dark:border-gray-900 ${item.active ? 'bg-white text-gray-700 dark:bg-gray-900 dark:text-gray-50' : 'bg-white dark:bg-gray-950'}`} key={i} href={item.url}>
                                 {item.label}
                             </Link>
                         )

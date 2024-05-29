@@ -67,34 +67,63 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        // get all role data
+        $roles = Role::query()
+            ->select('id', 'name')
+            ->orderBy('name')
+            ->get();
+
+        // load relationship
+        $user->load(['roles' => fn($query) => $query->select('id', 'name'), 'roles.permissions' => fn($query) => $query->select('id', 'name')]);
+
+        // render view
+        return inertia('Apps/Users/Edit', [
+            'roles' => $roles,
+            'user' => $user
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserRequest $request, User $user)
     {
-        //
+        // check if user send request password
+        if($request->password)
+            // update user data password
+            $user->update([
+                'password' => bcrypt($request->password),
+            ]);
+
+        // update user data name
+        $user->update([
+            'name' => $request->name,
+        ]);
+
+        // assign role to user
+        $user->syncRoles($request->selectedRoles);
+
+        // render view
+        return to_route('apps.users.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $ids = explode(',', $id);
+
+        if(count($ids) > 0)
+            User::whereIn('id', $ids)->delete();
+        else
+            User::findOrFail($id)->delete();
+
+        // render view
+        return back();
     }
 }
