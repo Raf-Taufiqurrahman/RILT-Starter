@@ -111,7 +111,7 @@ export default function Edit() {
                         Akses Group
                     </div>
                 </div>
-                <div className='p-4 rounded-b-lg border border-t-0 bg-gray-100 dark:bg-gray-900 dark:border-gray-800'>
+                <div className='p-4 rounded-b-lg border border-t-0 bg-gray-100 dark:bg-gray-900 dark:border-gray-900'>
                     <div className='flex flex-row flex-wrap gap-4'>
                         {roles.map((role, i) => (
                             <Checkbox

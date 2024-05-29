@@ -8,7 +8,7 @@ const Card = ({icon, title, className, children}) => {
                     {title}
                 </div>
             </div>
-            <div className='bg-white dark:bg-gray-950 rounded-b-lg border border-t-0 dark:border-gray-900'>
+            <div className='bg-white dark:bg-gray-950 rounded-b-lg border-t-0 dark:border-gray-900'>
                 {children}
             </div>
         </>
@@ -18,8 +18,8 @@ const Card = ({icon, title, className, children}) => {
 
 const Table = ({ children }) => {
     return (
-        <div className="w-full overflow-hidden overflow-x-auto border-collapse rounded-xl rounded-t-none">
-            <table className="w-full text-sm border-collapse">
+        <div className="w-full overflow-hidden overflow-x-auto border-collapse rounded-b-lg border border-t-0 dark:border-gray-900">
+            <table className="w-full text-sm">
                 {children}
             </table>
         </div>
