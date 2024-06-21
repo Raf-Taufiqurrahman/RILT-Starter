@@ -1,11 +1,9 @@
+import Menu from "@/Utils/Menu"
+import React from "react";
 import LinkItem from "@/Components/LinkItem";
+import LinkItemDropdown from "@/Components/LinkItemDropdown";
 import { usePage } from "@inertiajs/react";
 import { IconBrandReact } from "@tabler/icons-react";
-import Menu from "@/Utils/Menu"
-import React, {useEffect} from "react";
-import LinkItemDropdown from "@/Components/LinkItemDropdown";
-import { useTheme } from "@/Context/ThemeSwitcherContext";
-
 export default function Sidebar({ sidebarOpen }) {
 
     // define props
@@ -41,28 +39,30 @@ export default function Sidebar({ sidebarOpen }) {
                     <div className="w-full flex flex-col overflow-y-auto">
                         {menuNavigation.map((item, index) => (
                             <div key={index}>
-                                <div className="text-gray-500 text-xs py-3 px-4 font-bold uppercase">
-                                    {item.title}
-                                </div>
+                                {item.permissions &&
+                                    <div className="text-gray-500 text-xs py-3 px-4 font-bold uppercase">
+                                        {item.title}
+                                    </div>
+                                }
                                 {item.details.map((detail, indexDetail) => (
                                     detail.hasOwnProperty('subdetails') ?
-                                    <LinkItemDropdown
-                                        key={indexDetail}
-                                        title={detail.title}
-                                        icon={detail.icon}
-                                        data={detail.subdetails}
-                                        access={detail.permissions}
-                                        sidebarOpen={sidebarOpen}
-                                    />
+                                        <LinkItemDropdown
+                                            key={indexDetail}
+                                            title={detail.title}
+                                            icon={detail.icon}
+                                            data={detail.subdetails}
+                                            access={detail.permissions}
+                                            sidebarOpen={sidebarOpen}
+                                        />
                                     :
-                                    <LinkItem
-                                        key={indexDetail}
-                                        title={detail.title}
-                                        icon={detail.icon}
-                                        href={detail.href}
-                                        access={detail.permissions}
-                                        sidebarOpen={sidebarOpen}
-                                    />
+                                        <LinkItem
+                                            key={indexDetail}
+                                            title={detail.title}
+                                            icon={detail.icon}
+                                            href={detail.href}
+                                            access={detail.permissions}
+                                            sidebarOpen={sidebarOpen}
+                                        />
                                 ))}
                             </div>
                         ))}
@@ -71,32 +71,32 @@ export default function Sidebar({ sidebarOpen }) {
             :
                 <>
                     <div className="flex justify-center items-center px-6 py-2 h-16 border-b dark:border-gray-900">
-                        <IconBrandReact size={20} strokeWidth={1.5} className="sidebar-title"/>
+                        <IconBrandReact size={20} strokeWidth={1.5} className="dark:text-white"/>
                     </div>
                     <div className='w-full px-6 py-3 flex justify-center items-center gap-4 border-b bg-white dark:bg-gray-950/50 dark:border-gray-900'>
                         <img src={auth.user.avatar} className='w-8 h-8 rounded-full'/>
                     </div>
                     <div className='w-full flex flex-col overflow-y-auto items-center justify-center'>
                         {menuNavigation.map((link, i) => (
-                            <div className='flex flex-col min-w-full items-center relative' key={i}>
+                            <div className='flex flex-col min-w-full items-center' key={i}>
                                 {link.details.map((detail, x) =>
                                     detail.hasOwnProperty('subdetails') ?
-                                    <LinkItemDropdown
-                                        sidebarOpen={sidebarOpen}
-                                        key={x}
-                                        data={detail.subdetails}
-                                        icon={detail.icon}
-                                        href={detail.href}
-                                        access={detail.permissions}
-                                    />
+                                        <LinkItemDropdown
+                                            sidebarOpen={sidebarOpen}
+                                            key={x}
+                                            data={detail.subdetails}
+                                            icon={detail.icon}
+                                            href={detail.href}
+                                            access={detail.permissions}
+                                        />
                                     :
-                                    <LinkItem
-                                        sidebarOpen={sidebarOpen}
-                                        key={x}
-                                        access={detail.permissions}
-                                        icon={detail.icon}
-                                        href={detail.href}
-                                    />
+                                        <LinkItem
+                                            sidebarOpen={sidebarOpen}
+                                            key={x}
+                                            access={detail.permissions}
+                                            icon={detail.icon}
+                                            href={detail.href}
+                                        />
                                 )}
                             </div>
                         ))}

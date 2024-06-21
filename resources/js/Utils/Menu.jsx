@@ -12,6 +12,7 @@ export default function Menu() {
     const menuNavigation = [
         {
             title: 'Overview',
+            permissions: hasAnyPermission(['dashboard-access']),
             details: [
                 {
                     title : 'Dashboard',
@@ -24,6 +25,7 @@ export default function Menu() {
         },
         {
             title: 'User Management',
+            permissions: hasAnyPermission(['permissions-access']) || hasAnyPermission(['roles-access']) || hasAnyPermission(['users-access']),
             details : [
                 {
                     title : 'Hak Akses',
@@ -49,7 +51,7 @@ export default function Menu() {
                             href: '/apps/users',
                             icon: <IconTable size={20} strokeWidth={1.5}/>,
                             active: url === '/apps/users' ? true : false,
-                            permissions: hasAnyPermission(['users-access']),
+                            permissions: hasAnyPermission(['users-data']),
                         },
                         {
                             title: 'Tambah Data Pengguna',
