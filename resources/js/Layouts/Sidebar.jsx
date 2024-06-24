@@ -1,9 +1,10 @@
-import Menu from "@/Utils/Menu"
 import React from "react";
+import Menu from "@/Utils/Menu"
 import LinkItem from "@/Components/LinkItem";
 import LinkItemDropdown from "@/Components/LinkItemDropdown";
 import { usePage } from "@inertiajs/react";
 import { IconBrandReact } from "@tabler/icons-react";
+import { clsx } from "clsx";
 export default function Sidebar({ sidebarOpen }) {
 
     // define props
@@ -14,7 +15,7 @@ export default function Sidebar({ sidebarOpen }) {
 
     return (
         <div
-            className={`${sidebarOpen ? 'w-[260px]' : 'w-[100px]'} hidden md:block min-h-screen overflow-y-auto border-r transition-all duration-300 bg-white dark:bg-gray-950 dark:border-gray-900`}>
+            className={clsx(sidebarOpen ? 'w-[260px]' : 'w-[100px]', 'hidden md:block min-h-screen overflow-y-auto border-r transition-all duration-300 bg-white dark:bg-gray-950 dark:border-gray-900')}>
             {sidebarOpen ?
                 <>
                     <div className="flex justify-center items-center px-6 py-2 h-16">
