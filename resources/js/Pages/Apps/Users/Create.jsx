@@ -55,7 +55,7 @@ export default function Create() {
                         type={'submit'}
                         label={'Simpan'}
                         icon={<IconPencilPlus size={20} strokeWidth={1.5}/>}
-                        className={'border bg-white text-gray-700 hover:bg-gray-100 dark:bg-gray-950 dark:border-gray-800 dark:text-gray-200 dark:hover:bg-gray-900'}
+                        variant={'gray'}
                     />
                 }
                 form={saveUser}

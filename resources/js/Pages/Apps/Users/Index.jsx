@@ -1,12 +1,14 @@
-import AppLayout from '@/Layouts/AppLayout'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Head, useForm, usePage } from '@inertiajs/react'
 import Button from '@/Components/Button'
-import { IconDatabaseOff, IconCirclePlus, IconTrash, IconPencilCog } from '@tabler/icons-react';
 import Search from '@/Components/Search';
 import Table from '@/Components/Table';
 import Checkbox from '@/Components/Checkbox';
 import Swal from 'sweetalert2';
+import AppLayout from '@/Layouts/AppLayout'
+import hasAnyPermission from '@/Utils/Permissions';
+import { IconDatabaseOff, IconCirclePlus, IconTrash, IconPencilCog } from '@tabler/icons-react';
+
 export default function Index() {
 
     // destruct users from props
@@ -63,22 +65,22 @@ export default function Index() {
             <div className='mb-2'>
                 <div className='flex justify-between items-center gap-2'>
                     <div className='flex flex-row gap-2 items-center'>
-                        <Button
-                            type={'link'}
-                            href={route('apps.users.create')}
-                            icon={<IconCirclePlus size={20} strokeWidth={1.5}/>}
-                            className={'bg-white text-gray-700 dark:bg-gray-950 dark:border-gray-800 dark:text-gray-200'}
-                            label={'Tambah Data Pengguna'}
-                            onClick={() => setData('isOpen', true)}
-                            added={true}
-                        />
-                        {data.selectedUser.length > 0 &&
+                        {hasAnyPermission(['users-create']) &&
+                            <Button
+                                type={'link'}
+                                href={route('apps.users.create')}
+                                icon={<IconCirclePlus size={20} strokeWidth={1.5}/>}
+                                variant={'gray'}
+                                label={'Tambah Data Pengguna'}
+                                onClick={() => setData('isOpen', true)}
+                            />
+                        }
+                        {hasAnyPermission(['users-delete']) && data.selectedUser.length > 0 &&
                             <Button
                                 type={'bulk'}
                                 icon={<IconTrash size={20} strokeWidth={1.5}/>}
-                                className={'border bg-rose-100 border-rose-300 text-rose-500 hover:bg-rose-200 dark:bg-rose-950  dark:border-gray-800 dark:hover:bg-rose-900'}
+                                variant={'roseBlack'}
                                 label={`Hapus ${data.selectedUser.length} data yang dipilih`}
-                                added={true}
                                 onClick={() => deleteData(data.selectedUser)}
                             />
                         }
@@ -143,18 +145,22 @@ export default function Index() {
                                     </Table.Td>
                                     <Table.Td>
                                         <div className='flex gap-2'>
+                                        {hasAnyPermission(['users-edit']) &&
                                             <Button
                                                 type={'edit'}
                                                 icon={<IconPencilCog size={16} strokeWidth={1.5}/>}
-                                                className={'border bg-orange-100 border-orange-300 text-orange-500 hover:bg-orange-200 dark:bg-orange-950 dark:border-orange-800 dark:text-gray-300  dark:hover:bg-orange-900'}
+                                                variant={'orange'}
                                                 href={route('apps.users.edit', user.id)}
                                             />
+                                        }
+                                        {hasAnyPermission(['users-delete']) &&
                                             <Button
                                                 type={'delete'}
                                                 icon={<IconTrash size={16} strokeWidth={1.5}/>}
-                                                className={'border bg-rose-100 border-rose-300 text-rose-500 hover:bg-rose-200 dark:bg-rose-950 dark:border-rose-800 dark:text-gray-300  dark:hover:bg-rose-900'}
+                                                variant={'rose'}
                                                 url={route('apps.users.destroy', user.id)}
                                             />
+                                        }
                                         </div>
                                     </Table.Td>
                                 </tr>

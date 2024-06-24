@@ -1,3 +1,7 @@
+import React from 'react'
+import { Head, useForm, usePage } from '@inertiajs/react'
+import { IconDatabaseOff, IconCirclePlus, IconTrash, IconUserShield, IconPencilCog, IconPencilCheck } from '@tabler/icons-react';
+import AppLayout from '@/Layouts/AppLayout'
 import Button from '@/Components/Button';
 import Input from '@/Components/Input';
 import ListBox from '@/Components/ListBox';
@@ -5,10 +9,7 @@ import Modal from '@/Components/Modal';
 import Pagination from '@/Components/Pagination';
 import Search from '@/Components/Search';
 import Table from '@/Components/Table'
-import AppLayout from '@/Layouts/AppLayout'
-import { Head, useForm, usePage } from '@inertiajs/react'
-import { IconDatabaseOff, IconCirclePlus, IconTrash, IconUserShield, IconPencilCog, IconPencilCheck } from '@tabler/icons-react';
-import React from 'react'
+import hasAnyPermission from '@/Utils/Permissions';
 export default function Index() {
 
     // destruct roles from props
@@ -72,14 +73,15 @@ export default function Index() {
             <Head title='Akses Group'/>
             <div className='mb-2'>
                 <div className='flex justify-between items-center gap-2'>
-                    <Button
-                        type={'button'}
-                        icon={<IconCirclePlus size={20} strokeWidth={1.5}/>}
-                        className={'border bg-white text-gray-700 dark:bg-gray-950 dark:border-gray-800 dark:text-gray-200'}
-                        label={'Tambah Data Akses Group'}
-                        onClick={() => setData('isOpen', true)}
-                        added={true}
-                    />
+                    {hasAnyPermission(['roles-create']) &&
+                        <Button
+                            type={'button'}
+                            icon={<IconCirclePlus size={20} strokeWidth={1.5}/>}
+                            variant={'gray'}
+                            label={'Tambah Data Akses Group'}
+                            onClick={() => setData('isOpen', true)}
+                        />
+                    }
                     <div className='w-full md:w-4/12'>
                         <Search
                             url={route('apps.roles.index')}
@@ -125,8 +127,7 @@ export default function Index() {
                     <Button
                         type={'submit'}
                         icon={<IconPencilCheck size={20} strokeWidth={1.5}/>}
-                        className={'border bg-white text-gray-700 hover:bg-gray-100 dark:bg-gray-950 dark:border-gray-800 dark:text-gray-200'}
-                        added={true}
+                        variant={'gray'}
                         label={'Simpan'}
                     />
                 </form>
@@ -153,7 +154,13 @@ export default function Index() {
                                     </Table.Td>
                                     <Table.Td>
                                         <div className='flex flex-wrap gap-2'>
-                                            {role.permissions.map((permission, index) => (
+                                            {
+                                                role.name == 'super-admin' ?
+                                                <span className="rounded-full px-2.5 py-0.5 text-xs tracking-tight font-medium transition-colors focus:outline-none flex items-center gap-1 capitalize border border-teal-500/40 bg-teal-500/10 text-teal-500 hover:bg-teal-500/20">
+                                                   Semua hak akses
+                                                </span>
+                                            :
+                                                role.permissions.map((permission, index) => (
                                                 <span className="rounded-full px-2.5 py-0.5 text-xs tracking-tight font-medium transition-colors focus:outline-none flex items-center gap-1 capitalize border border-teal-500/40 bg-teal-500/10 text-teal-500 hover:bg-teal-500/20" key={index}>
                                                     {permission.name}
                                                 </span>
@@ -162,26 +169,30 @@ export default function Index() {
                                     </Table.Td>
                                     <Table.Td>
                                         <div className='flex gap-2'>
-                                            <Button
-                                                type={'modal'}
-                                                icon={<IconPencilCog size={16} strokeWidth={1.5}/>}
-                                                className={'border bg-orange-100 border-orange-300 text-orange-500 hover:bg-orange-200 dark:bg-orange-950 dark:border-orange-800 dark:text-gray-300  dark:hover:bg-orange-900'}
-                                                onClick={() =>
-                                                    setData({
-                                                        id: role.id,
-                                                        selectedPermission: role.permissions,
-                                                        name: role.name,
-                                                        isUpdate: true,
-                                                        isOpen : !data.isOpen,
-                                                    })
-                                                }
-                                            />
-                                            <Button
-                                                type={'delete'}
-                                                icon={<IconTrash size={16} strokeWidth={1.5}/>}
-                                                className={'border bg-rose-100 border-rose-300 text-rose-500 hover:bg-rose-200 dark:bg-rose-950 dark:border-rose-800 dark:text-gray-300  dark:hover:bg-rose-900'}
-                                                url={route('apps.roles.destroy', role.id)}
-                                            />
+                                            {hasAnyPermission(['roles-update']) &&
+                                                <Button
+                                                    type={'modal'}
+                                                    icon={<IconPencilCog size={16} strokeWidth={1.5}/>}
+                                                    variant={'orange'}
+                                                    onClick={() =>
+                                                        setData({
+                                                            id: role.id,
+                                                            selectedPermission: role.permissions,
+                                                            name: role.name,
+                                                            isUpdate: true,
+                                                            isOpen : !data.isOpen,
+                                                        })
+                                                    }
+                                                />
+                                            }
+                                            {hasAnyPermission(['roles-delete']) &&
+                                                <Button
+                                                    type={'delete'}
+                                                    icon={<IconTrash size={16} strokeWidth={1.5}/>}
+                                                    variant={'rose'}
+                                                    url={route('apps.roles.destroy', role.id)}
+                                                />
+                                            }
                                         </div>
                                     </Table.Td>
                                 </tr>
