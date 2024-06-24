@@ -35,7 +35,7 @@ export default function LinkItemDropdown({icon, title, data, access, sidebarOpen
                                 {isOpen ? <IconChevronUp size={18} strokeWidth={1.5}/> : <IconChevronDown size={18} strokeWidth={1.5}/>}
                             </button>
                             {isOpen && data.map((item, i) => (
-                                <Link key={i} href={item.href} className={clsx(sideOpen, url === item.href && sideActive)}>
+                                <Link key={i} href={item.href} className={clsx(sideOpen, url === item.href && sideActive)}  {...props}>
                                     {item.icon} {item.title}
                                 </Link>
                             ))}
@@ -50,7 +50,7 @@ export default function LinkItemDropdown({icon, title, data, access, sidebarOpen
                             {icon}
                         </button>
                         {isOpen && data.map((item, i) => (
-                            <Link key={i} href={item.href} className={clsx(sideClose, url === item.href && sideActive)}>
+                            <Link key={i} href={item.href} className={clsx(sideClose, url === item.href && sideActive)} {...props}>
                                 {item.icon}
                             </Link>
                         ))}
